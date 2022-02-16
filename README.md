@@ -1,0 +1,1 @@
+# MiAK-ObliczeniaSymboliczne
