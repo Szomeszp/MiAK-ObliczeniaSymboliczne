@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftADDSUBleftMULDIVleftPOWADD AT COS CTG DIFFERENTIATE DIV EQ FOR FROM INTEGRATE LIMIT LP MUL NUM OVER POW RP SIN SOLVE STR SUB TG TO VAR VARIABLEcommand : equation\n                    | solve\n                    | differentiateequation : equation expression\n                    | expressionexpression : expression1\n                    | expression ADD expression1\n                    | expression SUB expression1\n                    expression1 : expression2\n                | expression1 MUL expression2\n                | expression1 DIV expression2expression2 : expression3\n                | expression2 POW expression3expression3 : LP expression RP\n                    | VAR\n                    | NUM\n                    expression3 : trigtrig : SIN LP expression RP\n                    | COS LP expression RP\n                    | TG LP expression RP\n                    | CTG LP expression RPsolve : SOLVE FOR LP vars RP EQ LP nums RP equationvars : vars VAR\n                | VARnums : nums NUM\n                | NUMdifferentiate : DIFFERENTIATE equation OVER VAR'
+_lr_signature = 'leftADDSUBleftMULDIVleftPOWADD COS CTG DIFFERENTIATE DIV EQ FOR FROM INTEGRATE LEFT LIMIT LP MUL NUM OVER POW RIGHT RP SIN SOLVE STR SUB TENDS TG TO VAR VARIABLE WHEREcommand : equation\n                    | solve\n                    | differentiate\n                    | integrate\n                    | limitequation : equation expression\n                    | expressionexpression : expression1\n                    | expression ADD expression1\n                    | expression SUB expression1\n                    expression1 : expression2\n                | expression1 MUL expression2\n                | expression1 DIV expression2expression2 : expression3\n                | expression2 POW expression3expression3 : LP expression RP\n                    | VAR\n                    | NUM\n                    | SUB NUM\n                    expression3 : trigtrig : SIN LP expression RP\n                    | COS LP expression RP\n                    | TG LP expression RP\n                    | CTG LP expression RPsolve : SOLVE FOR LP vars RP EQ LP nums RP equationvars : vars VAR\n                | VARnums : nums NUM\n                | NUMdifferentiate : DIFFERENTIATE equation OVER VARintegrate : INTEGRATE FROM expression3 TO expression3 equation OVER VAR\n                    | INTEGRATE equation OVER VARlimit : LIMIT equation WHERE VAR TENDS TO NUM\n                | LIMIT equation WHERE VAR TENDS TO NUM FROM sideside : LEFT\n                | RIGHT'
     
-_lr_action_items = {'SOLVE':([0,],[6,]),'DIFFERENTIATE':([0,],[8,]),'LP':([0,2,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,25,26,27,28,29,30,31,32,33,35,37,38,39,47,48,49,50,53,57,59,],[7,7,-5,7,7,-15,-6,-9,-12,-16,-17,28,29,30,31,-4,7,7,34,7,7,7,7,7,7,7,7,-7,-8,-14,-10,-11,-13,-18,-19,-20,-21,54,7,7,]),'VAR':([0,2,5,7,8,9,10,11,12,13,14,19,20,21,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,44,45,47,48,49,50,52,57,59,],[9,9,-5,9,9,-15,-6,-9,-12,-16,-17,-4,9,9,9,9,9,9,9,9,9,9,-7,-8,45,-14,46,-10,-11,-13,52,-24,-18,-19,-20,-21,-23,9,9,]),'NUM':([0,2,5,7,8,9,10,11,12,13,14,19,20,21,24,25,26,27,28,29,30,31,32,33,35,37,38,39,47,48,49,50,54,55,56,57,58,59,],[13,13,-5,13,13,-15,-6,-9,-12,-16,-17,-4,13,13,13,13,13,13,13,13,13,13,-7,-8,-14,-10,-11,-13,-18,-19,-20,-21,56,58,-26,13,-25,13,]),'SIN':([0,2,5,7,8,9,10,11,12,13,14,19,20,21,24,25,26,27,28,29,30,31,32,33,35,37,38,39,47,48,49,50,57,59,],[15,15,-5,15,15,-15,-6,-9,-12,-16,-17,-4,15,15,15,15,15,15,15,15,15,15,-7,-8,-14,-10,-11,-13,-18,-19,-20,-21,15,15,]),'COS':([0,2,5,7,8,9,10,11,12,13,14,19,20,21,24,25,26,27,28,29,30,31,32,33,35,37,38,39,47,48,49,50,57,59,],[16,16,-5,16,16,-15,-6,-9,-12,-16,-17,-4,16,16,16,16,16,16,16,16,16,16,-7,-8,-14,-10,-11,-13,-18,-19,-20,-21,16,16,]),'TG':([0,2,5,7,8,9,10,11,12,13,14,19,20,21,24,25,26,27,28,29,30,31,32,33,35,37,38,39,47,48,49,50,57,59,],[17,17,-5,17,17,-15,-6,-9,-12,-16,-17,-4,17,17,17,17,17,17,17,17,17,17,-7,-8,-14,-10,-11,-13,-18,-19,-20,-21,17,17,]),'CTG':([0,2,5,7,8,9,10,11,12,13,14,19,20,21,24,25,26,27,28,29,30,31,32,33,35,37,38,39,47,48,49,50,57,59,],[18,18,-5,18,18,-15,-6,-9,-12,-16,-17,-4,18,18,18,18,18,18,18,18,18,18,-7,-8,-14,-10,-11,-13,-18,-19,-20,-21,18,18,]),'$end':([1,2,3,4,5,9,10,11,12,13,14,19,32,33,35,37,38,39,46,47,48,49,50,59,],[0,-1,-2,-3,-5,-15,-6,-9,-12,-16,-17,-4,-7,-8,-14,-10,-11,-13,-27,-18,-19,-20,-21,-22,]),'OVER':([5,9,10,11,12,13,14,19,24,32,33,35,37,38,39,47,48,49,50,],[-5,-15,-6,-9,-12,-16,-17,-4,36,-7,-8,-14,-10,-11,-13,-18,-19,-20,-21,]),'ADD':([5,9,10,11,12,13,14,19,23,32,33,35,37,38,39,40,41,42,43,47,48,49,50,],[20,-15,-6,-9,-12,-16,-17,20,20,-7,-8,-14,-10,-11,-13,20,20,20,20,-18,-19,-20,-21,]),'SUB':([5,9,10,11,12,13,14,19,23,32,33,35,37,38,39,40,41,42,43,47,48,49,50,],[21,-15,-6,-9,-12,-16,-17,21,21,-7,-8,-14,-10,-11,-13,21,21,21,21,-18,-19,-20,-21,]),'FOR':([6,],[22,]),'POW':([9,11,12,13,14,35,37,38,39,47,48,49,50,],[-15,27,-12,-16,-17,-14,27,27,-13,-18,-19,-20,-21,]),'MUL':([9,10,11,12,13,14,32,33,35,37,38,39,47,48,49,50,],[-15,25,-9,-12,-16,-17,25,25,-14,-10,-11,-13,-18,-19,-20,-21,]),'DIV':([9,10,11,12,13,14,32,33,35,37,38,39,47,48,49,50,],[-15,26,-9,-12,-16,-17,26,26,-14,-10,-11,-13,-18,-19,-20,-21,]),'RP':([9,10,11,12,13,14,23,32,33,35,37,38,39,40,41,42,43,44,45,47,48,49,50,52,55,56,58,],[-15,-6,-9,-12,-16,-17,35,-7,-8,-14,-10,-11,-13,47,48,49,50,51,-24,-18,-19,-20,-21,-23,57,-26,-25,]),'EQ':([51,],[53,]),}
+_lr_action_items = {'SOLVE':([0,],[8,]),'DIFFERENTIATE':([0,],[10,]),'INTEGRATE':([0,],[12,]),'LIMIT':([0,],[14,]),'LP':([0,2,7,9,10,11,12,13,14,15,16,18,19,20,21,22,23,24,25,26,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,49,50,51,59,62,63,64,65,68,70,71,80,85,],[9,9,-7,9,9,-17,9,-14,9,-18,-8,-11,-20,37,38,39,40,-6,9,9,43,9,9,9,9,9,9,-19,9,9,9,9,9,-9,-10,-16,-12,-13,-15,9,-21,-22,-23,-24,9,73,9,9,9,]),'VAR':([0,2,7,9,10,11,12,13,14,15,16,18,19,24,25,26,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,47,48,49,50,51,56,57,59,62,63,64,65,67,68,71,74,80,85,],[11,11,-7,11,11,-17,11,-14,11,-18,-8,-11,-20,-6,11,11,11,11,11,11,11,11,-19,11,11,11,11,11,-9,-10,57,-16,58,60,61,-12,-13,-15,67,-27,11,-21,-22,-23,-24,-26,11,11,78,11,11,]),'NUM':([0,2,7,9,10,11,12,13,14,15,16,17,18,19,24,25,26,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,49,50,51,59,62,63,64,65,68,71,72,73,76,77,80,81,85,],[15,15,-7,15,15,-17,15,-14,15,-18,-8,35,-11,-20,-6,15,15,15,15,15,15,15,15,-19,15,15,15,15,15,-9,-10,-16,-12,-13,-15,15,-21,-22,-23,-24,15,15,75,77,81,-29,15,-28,15,]),'SUB':([0,2,7,9,10,11,12,13,14,15,16,18,19,24,25,26,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,49,50,51,52,53,54,55,59,62,63,64,65,68,71,80,85,],[17,17,26,17,17,-17,17,-14,17,-18,-8,-11,-20,26,17,17,26,17,17,17,17,17,17,-19,17,17,17,17,17,-9,-10,-16,-12,-13,-15,26,26,26,26,17,-21,-22,-23,-24,17,17,17,17,]),'SIN':([0,2,7,9,10,11,12,13,14,15,16,18,19,24,25,26,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,49,50,51,59,62,63,64,65,68,71,80,85,],[20,20,-7,20,20,-17,20,-14,20,-18,-8,-11,-20,-6,20,20,20,20,20,20,20,20,-19,20,20,20,20,20,-9,-10,-16,-12,-13,-15,20,-21,-22,-23,-24,20,20,20,20,]),'COS':([0,2,7,9,10,11,12,13,14,15,16,18,19,24,25,26,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,49,50,51,59,62,63,64,65,68,71,80,85,],[21,21,-7,21,21,-17,21,-14,21,-18,-8,-11,-20,-6,21,21,21,21,21,21,21,21,-19,21,21,21,21,21,-9,-10,-16,-12,-13,-15,21,-21,-22,-23,-24,21,21,21,21,]),'TG':([0,2,7,9,10,11,12,13,14,15,16,18,19,24,25,26,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,49,50,51,59,62,63,64,65,68,71,80,85,],[22,22,-7,22,22,-17,22,-14,22,-18,-8,-11,-20,-6,22,22,22,22,22,22,22,22,-19,22,22,22,22,22,-9,-10,-16,-12,-13,-15,22,-21,-22,-23,-24,22,22,22,22,]),'CTG':([0,2,7,9,10,11,12,13,14,15,16,18,19,24,25,26,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,49,50,51,59,62,63,64,65,68,71,80,85,],[23,23,-7,23,23,-17,23,-14,23,-18,-8,-11,-20,-6,23,23,23,23,23,23,23,23,-19,23,23,23,23,23,-9,-10,-16,-12,-13,-15,23,-21,-22,-23,-24,23,23,23,23,]),'$end':([1,2,3,4,5,6,7,11,13,15,16,18,19,24,35,41,42,44,49,50,51,58,60,62,63,64,65,75,78,82,83,84,85,],[0,-1,-2,-3,-4,-5,-7,-17,-14,-18,-8,-11,-20,-6,-19,-9,-10,-16,-12,-13,-15,-30,-32,-21,-22,-23,-24,-33,-31,-34,-35,-36,-25,]),'OVER':([7,11,13,15,16,18,19,24,29,31,35,41,42,44,49,50,51,62,63,64,65,71,],[-7,-17,-14,-18,-8,-11,-20,-6,45,47,-19,-9,-10,-16,-12,-13,-15,-21,-22,-23,-24,74,]),'WHERE':([7,11,13,15,16,18,19,24,32,35,41,42,44,49,50,51,62,63,64,65,],[-7,-17,-14,-18,-8,-11,-20,-6,48,-19,-9,-10,-16,-12,-13,-15,-21,-22,-23,-24,]),'ADD':([7,11,13,15,16,18,19,24,28,35,41,42,44,49,50,51,52,53,54,55,62,63,64,65,],[25,-17,-14,-18,-8,-11,-20,25,25,-19,-9,-10,-16,-12,-13,-15,25,25,25,25,-21,-22,-23,-24,]),'FOR':([8,],[27,]),'POW':([11,13,15,18,19,35,44,49,50,51,62,63,64,65,],[-17,-14,-18,36,-20,-19,-16,36,36,-15,-21,-22,-23,-24,]),'MUL':([11,13,15,16,18,19,35,41,42,44,49,50,51,62,63,64,65,],[-17,-14,-18,33,-11,-20,-19,33,33,-16,-12,-13,-15,-21,-22,-23,-24,]),'DIV':([11,13,15,16,18,19,35,41,42,44,49,50,51,62,63,64,65,],[-17,-14,-18,34,-11,-20,-19,34,34,-16,-12,-13,-15,-21,-22,-23,-24,]),'RP':([11,13,15,16,18,19,28,35,41,42,44,49,50,51,52,53,54,55,56,57,62,63,64,65,67,76,77,81,],[-17,-14,-18,-8,-11,-20,44,-19,-9,-10,-16,-12,-13,-15,62,63,64,65,66,-27,-21,-22,-23,-24,-26,80,-29,-28,]),'TO':([11,15,19,35,44,46,62,63,64,65,69,],[-17,-18,-20,-19,-16,59,-21,-22,-23,-24,72,]),'FROM':([12,75,],[30,79,]),'TENDS':([61,],[69,]),'EQ':([66,],[70,]),'LEFT':([79,],[83,]),'RIGHT':([79,],[84,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'command':([0,],[1,]),'equation':([0,8,57,],[2,24,59,]),'solve':([0,],[3,]),'differentiate':([0,],[4,]),'expression':([0,2,7,8,24,28,29,30,31,57,59,],[5,19,23,5,19,40,41,42,43,5,19,]),'expression1':([0,2,7,8,20,21,24,28,29,30,31,57,59,],[10,10,10,10,32,33,10,10,10,10,10,10,10,]),'expression2':([0,2,7,8,20,21,24,25,26,28,29,30,31,57,59,],[11,11,11,11,11,11,11,37,38,11,11,11,11,11,11,]),'expression3':([0,2,7,8,20,21,24,25,26,27,28,29,30,31,57,59,],[12,12,12,12,12,12,12,12,12,39,12,12,12,12,12,12,]),'trig':([0,2,7,8,20,21,24,25,26,27,28,29,30,31,57,59,],[14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),'vars':([34,],[44,]),'nums':([54,],[55,]),}
+_lr_goto_items = {'command':([0,],[1,]),'equation':([0,10,12,14,68,80,],[2,29,31,32,71,85,]),'solve':([0,],[3,]),'differentiate':([0,],[4,]),'integrate':([0,],[5,]),'limit':([0,],[6,]),'expression':([0,2,9,10,12,14,29,31,32,37,38,39,40,68,71,80,85,],[7,24,28,7,7,7,24,24,24,52,53,54,55,7,24,7,24,]),'expression3':([0,2,9,10,12,14,25,26,29,30,31,32,33,34,36,37,38,39,40,59,68,71,80,85,],[13,13,13,13,13,13,13,13,13,46,13,13,13,13,51,13,13,13,13,68,13,13,13,13,]),'expression1':([0,2,9,10,12,14,25,26,29,31,32,37,38,39,40,68,71,80,85,],[16,16,16,16,16,16,41,42,16,16,16,16,16,16,16,16,16,16,16,]),'expression2':([0,2,9,10,12,14,25,26,29,31,32,33,34,37,38,39,40,68,71,80,85,],[18,18,18,18,18,18,18,18,18,18,18,49,50,18,18,18,18,18,18,18,18,]),'trig':([0,2,9,10,12,14,25,26,29,30,31,32,33,34,36,37,38,39,40,59,68,71,80,85,],[19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,]),'vars':([43,],[56,]),'nums':([73,],[76,]),'side':([79,],[82,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,31 +27,40 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> command","S'",1,None,None,None),
-  ('command -> equation','command',1,'p_command','parser.py',27),
-  ('command -> solve','command',1,'p_command','parser.py',28),
-  ('command -> differentiate','command',1,'p_command','parser.py',29),
-  ('equation -> equation expression','equation',2,'p_equation','parser.py',38),
-  ('equation -> expression','equation',1,'p_equation','parser.py',39),
-  ('expression -> expression1','expression',1,'p_expression','parser.py',48),
-  ('expression -> expression ADD expression1','expression',3,'p_expression','parser.py',49),
-  ('expression -> expression SUB expression1','expression',3,'p_expression','parser.py',50),
-  ('expression1 -> expression2','expression1',1,'p_expression1','parser.py',59),
-  ('expression1 -> expression1 MUL expression2','expression1',3,'p_expression1','parser.py',60),
-  ('expression1 -> expression1 DIV expression2','expression1',3,'p_expression1','parser.py',61),
-  ('expression2 -> expression3','expression2',1,'p_expression2','parser.py',68),
-  ('expression2 -> expression2 POW expression3','expression2',3,'p_expression2','parser.py',69),
-  ('expression3 -> LP expression RP','expression3',3,'p_expression3','parser.py',77),
-  ('expression3 -> VAR','expression3',1,'p_expression3','parser.py',78),
-  ('expression3 -> NUM','expression3',1,'p_expression3','parser.py',79),
-  ('expression3 -> trig','expression3',1,'p_trig_factor','parser.py',92),
-  ('trig -> SIN LP expression RP','trig',4,'p_trig_expression','parser.py',97),
-  ('trig -> COS LP expression RP','trig',4,'p_trig_expression','parser.py',98),
-  ('trig -> TG LP expression RP','trig',4,'p_trig_expression','parser.py',99),
-  ('trig -> CTG LP expression RP','trig',4,'p_trig_expression','parser.py',100),
-  ('solve -> SOLVE FOR LP vars RP EQ LP nums RP equation','solve',10,'p_solve_expression','parser.py',106),
-  ('vars -> vars VAR','vars',2,'p_vars','parser.py',112),
-  ('vars -> VAR','vars',1,'p_vars','parser.py',113),
-  ('nums -> nums NUM','nums',2,'p_nums','parser.py',121),
-  ('nums -> NUM','nums',1,'p_nums','parser.py',122),
-  ('differentiate -> DIFFERENTIATE equation OVER VAR','differentiate',4,'p_differentiate','parser.py',130),
+  ('command -> equation','command',1,'p_command','parser.py',20),
+  ('command -> solve','command',1,'p_command','parser.py',21),
+  ('command -> differentiate','command',1,'p_command','parser.py',22),
+  ('command -> integrate','command',1,'p_command','parser.py',23),
+  ('command -> limit','command',1,'p_command','parser.py',24),
+  ('equation -> equation expression','equation',2,'p_equation','parser.py',28),
+  ('equation -> expression','equation',1,'p_equation','parser.py',29),
+  ('expression -> expression1','expression',1,'p_expression','parser.py',37),
+  ('expression -> expression ADD expression1','expression',3,'p_expression','parser.py',38),
+  ('expression -> expression SUB expression1','expression',3,'p_expression','parser.py',39),
+  ('expression1 -> expression2','expression1',1,'p_expression1','parser.py',48),
+  ('expression1 -> expression1 MUL expression2','expression1',3,'p_expression1','parser.py',49),
+  ('expression1 -> expression1 DIV expression2','expression1',3,'p_expression1','parser.py',50),
+  ('expression2 -> expression3','expression2',1,'p_expression2','parser.py',57),
+  ('expression2 -> expression2 POW expression3','expression2',3,'p_expression2','parser.py',58),
+  ('expression3 -> LP expression RP','expression3',3,'p_expression3','parser.py',65),
+  ('expression3 -> VAR','expression3',1,'p_expression3','parser.py',66),
+  ('expression3 -> NUM','expression3',1,'p_expression3','parser.py',67),
+  ('expression3 -> SUB NUM','expression3',2,'p_expression3','parser.py',68),
+  ('expression3 -> trig','expression3',1,'p_trig_factor','parser.py',83),
+  ('trig -> SIN LP expression RP','trig',4,'p_trig_expression','parser.py',87),
+  ('trig -> COS LP expression RP','trig',4,'p_trig_expression','parser.py',88),
+  ('trig -> TG LP expression RP','trig',4,'p_trig_expression','parser.py',89),
+  ('trig -> CTG LP expression RP','trig',4,'p_trig_expression','parser.py',90),
+  ('solve -> SOLVE FOR LP vars RP EQ LP nums RP equation','solve',10,'p_solve_expression','parser.py',95),
+  ('vars -> vars VAR','vars',2,'p_vars','parser.py',100),
+  ('vars -> VAR','vars',1,'p_vars','parser.py',101),
+  ('nums -> nums NUM','nums',2,'p_nums','parser.py',109),
+  ('nums -> NUM','nums',1,'p_nums','parser.py',110),
+  ('differentiate -> DIFFERENTIATE equation OVER VAR','differentiate',4,'p_differentiate','parser.py',118),
+  ('integrate -> INTEGRATE FROM expression3 TO expression3 equation OVER VAR','integrate',8,'p_integrate','parser.py',123),
+  ('integrate -> INTEGRATE equation OVER VAR','integrate',4,'p_integrate','parser.py',124),
+  ('limit -> LIMIT equation WHERE VAR TENDS TO NUM','limit',7,'p_limit','parser.py',132),
+  ('limit -> LIMIT equation WHERE VAR TENDS TO NUM FROM side','limit',9,'p_limit','parser.py',133),
+  ('side -> LEFT','side',1,'p_side','parser.py',141),
+  ('side -> RIGHT','side',1,'p_side','parser.py',142),
 ]

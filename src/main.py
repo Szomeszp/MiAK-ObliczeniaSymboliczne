@@ -13,16 +13,16 @@ if __name__ == "__main__":
         except EOFError:
             break
 
-        lexer = Lexer()
-        lexer.build()
-        lexer.input(userInput)
-
-        # Tokenize
-        while True:
-            tok = lexer.token()
-            if not tok:
-                break
-            print(tok)
+        # lexer = Lexer()
+        # lexer.build()
+        # lexer.input(userInput)
+        #
+        # # Tokenize
+        # while True:
+        #     tok = lexer.token()
+        #     if not tok:
+        #         break
+        #     print(tok)
 
         parser = yacc.yacc(module=Parser())
         syntaxTree = parser.parse(userInput, lexer=Parser().lexer)

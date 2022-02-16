@@ -5,6 +5,7 @@ class Node(object):
     def accept(self, visitor):
         return visitor.visit(self)
 
+
 class Command(Node):
     def __init__(self, type, command, args=None):
         super().__init__()
@@ -19,11 +20,13 @@ class VarExpr(Node):
         self.type = type
         self.val = val
 
+
 class NumExpr(Node):
     def __init__(self, type, val):
         super().__init__()
         self.type = type
         self.val = val
+
 
 class BinExpr(Node):
     def __init__(self, op, left, right):
@@ -32,6 +35,7 @@ class BinExpr(Node):
         self.left = left
         self.right = right
 
+
 class SolveExpr(Node):
     def __init__(self, variables, values, equation):
         super().__init__()
@@ -39,15 +43,35 @@ class SolveExpr(Node):
         self.values = values
         self.equation = equation
 
+
 class TrigExpr(Node):
     def __init__(self, function, equation):
         super().__init__()
         self.function = function
         self.equation = equation
 
+
 class DiffExpr(Node):
     def __init__(self, function, variables):
         super().__init__()
         self.function = function
         self.variables = variables
+
+
+class IntegrateExpr(Node):
+    def __init__(self, function, variable, start=None, end=None):
+        super().__init__()
+        self.function = function
+        self.variable = variable
+        self.start = start
+        self.end = end
+
+
+class LimitExpr(Node):
+    def __init__(self, function, variable, value=None, side=None):
+        super().__init__()
+        self.function = function
+        self.variable = variable
+        self.value = value
+        self.side = side
 

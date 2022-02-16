@@ -19,8 +19,9 @@ class Parser(object):
     def p_command(self, p):
         """command : equation
                     | solve
-                    | differentiate"""
-        print(p[1])
+                    | differentiate
+                    | integrate
+                    | limit"""
         p[0] = node.Command("command", [p[1]])
 
     def p_equation(self, p):
@@ -64,6 +65,7 @@ class Parser(object):
         """expression3 : LP expression RP
                     | VAR
                     | NUM
+                    | SUB NUM
                     """
 
         if len(p) == 2:
@@ -72,6 +74,8 @@ class Parser(object):
             else:
                 p[0] = node.VarExpr("variable", p[1])
 
+        elif len(p) == 3:
+            p[0] = node.NumExpr("number", -p[2])
         else:
             p[0] = p[2]
 
@@ -90,7 +94,6 @@ class Parser(object):
     def p_solve_expression(self, p):
         """solve : SOLVE FOR LP vars RP EQ LP nums RP equation"""
 
-        print(p)
         p[0] = node.SolveExpr(p[4], p[8], p[10])
 
     def p_vars(self, p):
@@ -115,6 +118,30 @@ class Parser(object):
         """differentiate : DIFFERENTIATE equation OVER VAR"""
 
         p[0] = node.DiffExpr(p[2], node.VarExpr("variable", p[4]))
+
+    def p_integrate(self, p):
+        """integrate : INTEGRATE FROM expression3 TO expression3 equation OVER VAR
+                    | INTEGRATE equation OVER VAR"""
+
+        if len(p) == 9:
+            p[0] = node.IntegrateExpr(p[6], node.VarExpr("variable", p[8]), p[3], p[5])
+        else:
+            p[0] = node.IntegrateExpr(p[2], node.VarExpr("variable", p[4]))
+
+    def p_limit(self, p):
+        """limit : LIMIT equation WHERE VAR TENDS TO NUM
+                | LIMIT equation WHERE VAR TENDS TO NUM FROM side"""
+
+        if len(p) == 8:
+            p[0] = node.LimitExpr(p[2], node.VarExpr("variable", p[4]), node.NumExpr("number", p[7]))
+        else:
+            p[0] = node.LimitExpr(p[2], node.VarExpr("variable", p[4]), node.NumExpr("number", p[7]), p[9])
+
+    def p_side(self, p):
+        """side : LEFT
+                | RIGHT"""
+
+        p[0] = p[1]
 
     def p_error(self, p):
         if p:

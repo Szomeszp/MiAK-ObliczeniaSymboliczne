@@ -13,7 +13,6 @@ class Interpreter():
         for i in node.command:
             print(i.accept(self))
 
-
     @when(syntaxTree.VarExpr)
     def visit(self, node):
         return sympy.symbols(node.val)
@@ -68,5 +67,26 @@ class Interpreter():
     @when(syntaxTree.DiffExpr)
     def visit(self, node):
         function = node.function.accept(self)
+
         return sympy.diff(function, node.variables.accept(self))
 
+    @when(syntaxTree.IntegrateExpr)
+    def visit(self, node):
+        function = node.function.accept(self)
+
+        if node.start is None or node.end is None:
+            return sympy.integrate(function, node.variable.accept(self))
+        else:
+            return sympy.integrate(function, (node.variable.accept(self), node.start.accept(self), node.end.accept(self)))
+
+    @when(syntaxTree.LimitExpr)
+    def visit(self, node):
+        function = node.function.accept(self)
+
+        if node.side is not None:
+            if node.side == "left":
+                return sympy.limit(function, node.variable.accept(self), node.value.accept(self), dir='-')
+            elif node.side == "right":
+                return sympy.limit(function, node.variable.accept(self), node.value.accept(self), dir='+')
+        else:
+            return sympy.limit(function, node.variable.accept(self), node.value.accept(self))
